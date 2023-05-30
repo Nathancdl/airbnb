@@ -1,9 +1,14 @@
 
-<nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
+<nav class="grey lighten-5" role="navigation">
+    <div class="nav-wrapper container">
+    <a id="logo-container" href="#" class="brand-logo">
+      <img id="header-logo" src="{{ asset('asset/picture/logo.png') }}" alt="">
+    </a>
+        
+        <ul class="right hide-on-med-and-down">
+          <li><a class="black-text" href="{{ path('app_recherche')}}">Rechercher un logement</a></li>
+          <li><a class="black-text" href="#">Mettre un logement</a></li>
+        </ul>
 
       <ul id="nav-mobile" class="sidenav">
         <li><a href="#">Navbar Link</a></li>

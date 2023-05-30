@@ -62,6 +62,11 @@ class Logement
      */
     private ?string $pays = null;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nombreMaxDePersonnes;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +176,18 @@ class Logement
     public function setPays(string $pays): self
     {
         $this->pays = $pays;
+
+        return $this;
+    }
+
+    public function getNombreMaxDePersonnes(): ?int
+    {
+        return $this->nombreMaxDePersonnes;
+    }
+
+    public function setNombreMaxDePersonnes(int $nombreMaxDePersonnes): self
+    {
+        $this->nombreMaxDePersonnes = $nombreMaxDePersonnes;
 
         return $this;
     }
