@@ -2,3 +2,14 @@
     max-width: 9rem;
     margin-top: .7rem;
 }
+
+#login-container{
+    max-width: 50rem;
+}
+
+.checkbox input{
+    opacity: 1 !important; 
+    pointer-events: initial !important;
+    position: relative !important;
+    margin-left: 1rem;
+}

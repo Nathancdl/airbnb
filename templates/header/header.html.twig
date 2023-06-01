@@ -8,6 +8,17 @@
         <ul class="right hide-on-med-and-down">
           <li><a class="black-text" href="{{ path('app_recherche')}}">Rechercher un logement</a></li>
           <li><a class="black-text" href="#">Mettre un logement</a></li>
+          
+
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          <li>
+          <a class="black-text" href="">Mon Compte</a>
+          </li>
+          {% else %}
+          
+          <li><a class="black-text" href="{{ path('app_login')}}">Connexion</a></li>
+
+          {% endif %}
         </ul>
 
       <ul id="nav-mobile" class="sidenav">
