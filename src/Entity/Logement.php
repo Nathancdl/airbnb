@@ -67,6 +67,12 @@ class Logement
      */
     private $nombreMaxDePersonnes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="logements")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -188,6 +194,18 @@ class Logement
     public function setNombreMaxDePersonnes(int $nombreMaxDePersonnes): self
     {
         $this->nombreMaxDePersonnes = $nombreMaxDePersonnes;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -1,16 +1,16 @@
 
 <nav class="grey lighten-5" role="navigation">
     <div class="nav-wrapper container">
-    <a id="logo-container" href="#" class="brand-logo">
+    <a id="logo-container" href="{{ path('app_home')}}" class="brand-logo">
       <img id="header-logo" src="{{ asset('asset/picture/logo.png') }}" alt="">
     </a>
         
         <ul class="right hide-on-med-and-down">
           <li><a class="black-text" href="{{ path('app_recherche')}}">Rechercher un logement</a></li>
-          <li><a class="black-text" href="#">Mettre un logement</a></li>
+          <li><a class="black-text" href="{{ path('app_new_logement')}}">Mettre un logement</a></li>
           
 
-          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          {% if app.user %}
           <li>
           <a class="black-text" href="">Mon Compte</a>
           </li>
