@@ -162,12 +162,12 @@ class Logement
         return $this;
     }
 
-    public function getCodePostale(): ?string
+    public function getCodePostal(): ?string
     {
         return $this->codePostal;
     }
 
-    public function setCodePostale(string $codePostal): self
+    public function setCodePostal(string $codePostal): self
     {
         $this->codePostal = $codePostal;
 
