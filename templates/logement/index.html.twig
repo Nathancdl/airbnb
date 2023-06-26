@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Logement{% endblock %}
+
+{% block body %}
+<h1>{{logement.nom}}</h1>
+<div class="row">
+    <div class="col s6">
+    
+    <p>{{logement.description}}</p>
+    </div>
+
+    <div class="col s5 card-panel center">
+        <h3>Prix par nuit : {{logement.prixParNuit}} €</h3>
+        
+        <h4>Reservation</h4>
+
+        {% if user %}
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="col s6">
+                    {{ form_row(form.DateDebut) }}
+                    </div>
+                     <div class="col s6">
+                    {{ form_row(form.DateFin) }}
+                    </div>
+                </div>
+                
+                
+            <button type="submit">Enregistrer</button>
+            {{ form_end(form) }}
+        {% else %}
+            <p>Connecté vous pour faire une réservation</p>
+            <a href="{{ path('app_login')}}">Connexion</a>
+        {% endif %}
+        
+    </div>
+      
+</div>
+
+
+
+<div>
+      <table>
+        <thead>
+          <tr>
+              <th>Nombre de chambre</th>
+              <th>Nombre de salles de bain</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>{{logement.nombreDeChambres}}</td>
+            <td>{{logement.nombreDeSallesDeBain}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+{% endblock %}

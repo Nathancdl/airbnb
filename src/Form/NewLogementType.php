@@ -5,18 +5,11 @@ use App\Entity\Logement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Security\Core\Security;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 class NewLogementType extends AbstractType
 {
-    private $security;
 
-    public function __construct(Security $security)
-    {
-        $this->security = $security;
-    }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
