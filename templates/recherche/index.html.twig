@@ -3,7 +3,7 @@
 {% block title %}Recherche{% endblock %}
 
 {% block body %}
-
+<div class="container">
 {{ form_start(form) }}
 {{ form_row(form.ville) }}
     <div class="row center"> 
@@ -11,10 +11,129 @@
     </div>
 {{ form_end(form) }}
 
+<div class="row">
 {% for logement in logements %}
-    <h3>{{ logement.nom }}</h3>
-    <p>Ville : {{ logement.ville }}</p>
-    <!-- Affichez les autres informations du logement -->
-{% endfor %}
+<div class="col s5 m5">
+    <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" style="width:100%; height:250px;" src="{{ asset('asset/picture/house.jpg') }}">
+        </div>
+        <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">{{ logement.nom }}<i class="material-icons right">more_vert</i></span>
+            <p>{{ logement.prixParNuit }} € par nuit</p>
+        </div>
+        <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">{{ logement.nom }}<i class="material-icons right">close</i></span>
+            <p>{{ logement.description }}</p>
+        </div>
+    </div>
+</div>
+ <script type="text/javascript">
+    // Replace 'YOUR_API_KEY' with your actual Google Maps API key
+const apiKey = 'AIzaSyAdczzsHX24nIf4I_6giOPezBCnZfHUJgM';
 
+// Replace '1600 Amphitheatre Parkway, Mountain View, CA' with the address you want to convert
+const address = "{{ logement.adresse }}, {{ logement.ville }}";
+console.log(address)
+// Create a request URL for geocoding API
+const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+
+
+// Send a request to geocoding API
+fetch(geocodingUrl)
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'OK') {
+      const location = data.results[0].geometry.location;
+      const latitude = location.lat;
+      const longitude = location.lng;
+        console.log(`Latitude: ${latitude}`);
+      console.log(`Longitude: ${longitude}`);
+       var locations = [
+      
+      ['<div class="col s5 m5">' +
+    '<div class="card">' +
+        '<div class="card-image waves-effect waves-block waves-light">' +
+            '<img class="activator" style="width:100%; height:250px;" src="{{ asset('asset/picture/house.jpg') }}">' +
+       ' </div>' +
+        '<div class="card-content">' +
+            '<span class="card-title activator grey-text text-darken-4">{{ logement.nom }}<i class="material-icons right">more_vert</i></span>' +
+           ' <p>{{ logement.prixParNuit }} € par nuit</p>' +
+       ' </div>' +
+       ' <div class="card-reveal">'+
+           ' <span class="card-title grey-text text-darken-4">{{ logement.nom }}<i class="material-icons right">close</i></span>'+
+            '<p>{{ logement.description }}</p>'+
+        '</div>' +
+    '</div>' +
+'</div>', latitude, longitude,1],
+      ]
+
+      
+    ;
+
+    console.log(locations)
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+    
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map,
+        icon: '{{ asset('asset/picture/home-icon.png') }}'
+      });
+      
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+      
+    } else {
+      console.log('Geocoding failed. Status:', data.status);
+    }
+  })
+  .catch(error => {
+    console.log('Error:', error);
+  });
+
+    
+   
+    </script>
+{% endfor %}
+</div>
+
+
+
+
+<!DOCTYPE html>
+<html> 
+<head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+  <title>Google Maps Multiple Markers</title> 
+  <script src="http://maps.google.com/maps/api/js?key=AIzaSyAdczzsHX24nIf4I_6giOPezBCnZfHUJgM" 
+          type="text/javascript"></script>
+</head> 
+<body>
+  <div id="map" style=" height: 700px;"></div>
+  <script type="text/javascript">
+   
+   
+
+  var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+  
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(48.8554638, 2.3605729),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    
+  
+  </script>
+</body>
+</html>
+
+</div>
 {% endblock %}
