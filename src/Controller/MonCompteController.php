@@ -40,4 +40,14 @@ class MonCompteController extends AbstractController
             'reservations' => $reservations
         ]);
     }
+
+    #[Route('/reservation/supprimer/{id}', name: 'app_reservation_supprimer')]
+    public function supprimerReservation(Reservation $reservation, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($reservation);
+        $entityManager->flush();
+
+        
+        return $this->redirectToRoute('app_mon_compte');
+    }
 }
