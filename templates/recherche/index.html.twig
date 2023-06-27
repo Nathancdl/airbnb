@@ -21,6 +21,7 @@
         <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">{{ logement.nom }}<i class="material-icons right">more_vert</i></span>
             <p>{{ logement.prixParNuit }} € par nuit</p>
+             <p><a href="{{ path('app_logement', {'id': logement.id}) }}"> Voir le logement </a></p>
         </div>
         <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">{{ logement.nom }}<i class="material-icons right">close</i></span>
