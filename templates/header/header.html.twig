@@ -11,9 +11,9 @@
           
 
           {% if app.user %}
-          <li>
-          <a class="black-text" href="{{ path('app_mon_compte')}}">Mon Compte</a>
-          </li>
+          <li><a class="black-text" href="{{ path('app_mon_compte')}}">Mon Compte</a></li>
+
+          <li><a class="black-text" href="{{ path('app_logout')}}">Déconnexion</a></li>
           {% else %}
           
           <li><a class="black-text" href="{{ path('app_login')}}">Connexion</a></li>

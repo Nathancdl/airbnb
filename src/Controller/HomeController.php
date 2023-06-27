@@ -18,7 +18,7 @@ class HomeController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/home', name: 'app_home')]
+    #[Route('/', name: 'app_home')]
     public function index(): Response
     {
         $logements = $this->entityManager->getRepository(Logement::class)->findAll();

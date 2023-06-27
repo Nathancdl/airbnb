@@ -10,21 +10,21 @@
 
 <h3>Mes Reservations</h3>
 <div class="row">
-{% for reservation in reservations %}
+{% for myreservation in myreservations %}
     <div class="col s2 m2">
         <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="{{ asset('asset/picture/house.jpg') }}">
             </div>
             <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">{{ reservation.logement.nom }}<i class="material-icons right">more_vert</i></span>
-                <p><a href="{{ path('app_logement', {'id': reservation.logement.id}) }}"> Voir le logement </a></p>
+                <span class="card-title activator grey-text text-darken-4">{{ myreservation.logement.nom }}<i class="material-icons right">more_vert</i></span>
+                <p><a href="{{ path('app_logement', {'id': myreservation.logement.id}) }}"> Voir le logement </a></p>
             </div>
             <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Réservation n°{{ reservation.id }}<i class="material-icons right">close</i></span>
-                <p>Logement : {{ reservation.logement.nom }}</p>
-                <p>Date de début : {{ reservation.DateDebut|date('Y-m-d') }}</p>
-                <p>Date de fin : {{ reservation.DateFin|date('Y-m-d') }}</p>
+                <span class="card-title grey-text text-darken-4">Réservation n°{{ myreservation.id }}<i class="material-icons right">close</i></span>
+                <p>Logement : {{ myreservation.logement.nom }}</p>
+                <p>Date de début : {{ myreservation.DateDebut|date('Y-m-d') }}</p>
+                <p>Date de fin : {{ myreservation.DateFin|date('Y-m-d') }}</p>
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
 <h3>Mes Logement</h3>
 <div class="row">
 {% for logement in logements %}
-    <div class="col s2 m2">
+    <div class="col s4 m4">
         <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="{{ asset('asset/picture/house.jpg') }}">
@@ -44,8 +44,36 @@
                 <p><a href="{{ path('app_logement', {'id': logement.id}) }}"> Voir le logement </a></p>
             </div>
             <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">{{ logement.nom }}<i class="material-icons right">close</i></span>
-                <p>{{ logement.description }}</p>
+                <span class="card-title grey-text text-darken-4">Mes Reservation<i class="material-icons right">close</i></span>
+
+               <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Reservation</th>
+                        <th>Date de début</th>
+                        <th>Date de fin</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for reservation in reservations[logement.getId()] %}
+                    <tr>
+                        <td>{{ reservation.getId()}}</td>
+                        <td>{{ reservation.getDateDebut().format('d-m-Y') }}</td>
+                        <td>{{ reservation.getDateFin().format('d-m-Y') }}</td>
+                        <td>{{ reservation.getUser().getEmail() }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+
             </div>
         </div>
     </div>
