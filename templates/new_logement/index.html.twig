@@ -3,10 +3,18 @@
 {% block title %}Hello NewLogementController!{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouveau logement</h1>
-
-    {{ form_start(form) }}
-        {# Ajoutez d'autres champs du logement ici #}
-        <button type="submit">Enregistrer</button>
-    {{ form_end(form) }}
+<div class="row">
+    <h2 class="center">Créer un nouveau logement</h2>
+        <div class="col s12">
+            {{ form_start(form) }}
+                <div class="input-field col s6 offset-m3">
+                    {{ form_row(form) }}
+                </div>
+                <div class="col s7 offset-m5">
+                    <button class=" waves-effect waves-light btn" type="submit">Enregistrer</button>
+                </div>
+            {{ form_end(form) }}
+                
+        </div>
+</div>
 {% endblock %}
