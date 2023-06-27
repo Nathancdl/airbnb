@@ -7,15 +7,29 @@
 
 <div class="example-wrapper">
 
+
+<h3>Mes Reservations</h3>
+<div class="row">
 {% for reservation in reservations %}
-<a href="{{ path('app_logement', {'id': reservation.logement.id}) }}">
-<div class="card">
-    <p>Réservation n°{{ reservation.id }}</p>
-    <p>Logement : {{ reservation.logement.nom }}</p>
-    <p>Date de début : {{ reservation.DateDebut|date('Y-m-d') }}</p>
-    <p>Date de fin : {{ reservation.DateFin|date('Y-m-d') }}</p>
-</div>
-</a>
+    <div class="col s2 m2">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="{{ asset('asset/picture/house.jpg') }}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{ reservation.logement.nom }}<i class="material-icons right">more_vert</i></span>
+                <p><a href="{{ path('app_logement', {'id': reservation.logement.id}) }}"> Voir le logement </a></p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Réservation n°{{ reservation.id }}<i class="material-icons right">close</i></span>
+                <p>Logement : {{ reservation.logement.nom }}</p>
+                <p>Date de début : {{ reservation.DateDebut|date('Y-m-d') }}</p>
+                <p>Date de fin : {{ reservation.DateFin|date('Y-m-d') }}</p>
+            </div>
+        </div>
+    </div>
 {% endfor %}
+</div>
+
 </div>
 {% endblock %}
