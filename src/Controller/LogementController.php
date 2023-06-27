@@ -88,7 +88,7 @@ class LogementController extends AbstractController
     {
         $repository = $this->entityManager->getRepository(Reservation::class);
 
-        // Vérification des dates de réservation
+        // Verification des dates de réservation
         $reservations = $repository->createQueryBuilder('r')
             ->where('r.Logement = :logementId')
             ->andWhere('r.DateDebut <= :dateFin')
@@ -125,6 +125,6 @@ class LogementController extends AbstractController
     #[Route('/logement/notfound/page', name: 'app_logement_erreur')]
     public function erreur(): Response
     {
-        return $this->render('logement/erreur.html.twig', []);
+        return $this->render('logement/erreur.html.twig');
     }
 }
