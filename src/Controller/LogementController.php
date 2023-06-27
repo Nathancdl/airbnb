@@ -39,7 +39,7 @@ class LogementController extends AbstractController
         $user = $this->security->getUser();
     
         if (!$logement) {
-            throw $this->createNotFoundException('Logement non trouvé');
+            return $this->redirectToRoute('app_logement_erreur');
         }
         
         $reservation = new Reservation();
@@ -120,5 +120,11 @@ class LogementController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('app_logement', ['id' => $logement->getId()]);
+    }
+
+    #[Route('/logement/notfound/page', name: 'app_logement_erreur')]
+    public function erreur(): Response
+    {
+        return $this->render('logement/erreur.html.twig', []);
     }
 }
