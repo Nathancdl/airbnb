@@ -7,10 +7,12 @@
         
         <ul class="right hide-on-med-and-down">
           <li><a class="black-text" href="{{ path('app_recherche')}}">Rechercher un logement</a></li>
-          <li><a class="black-text" href="{{ path('app_new_logement')}}">Mettre un logement</a></li>
+          
           
 
           {% if app.user %}
+          <li><a class="black-text" href="{{ path('app_new_logement')}}">Mettre un logement</a></li>
+
           <li><a class="black-text" href="{{ path('app_mon_compte')}}">Mon Compte</a></li>
 
           <li><a class="black-text" href="{{ path('app_logout')}}">Déconnexion</a></li>

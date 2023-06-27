@@ -26,20 +26,14 @@ class NewLogementController extends AbstractController
     #[Route('/newlogement', name: 'app_new_logement')]
     public function creerLogement(Request $request): Response
     {
-        $user = $this->security->getUser();
-        
-
         $logement = new Logement();
-        $logement->setUser($user);
+        $user = $this->security->getUser();
         $form = $this->createForm(NewLogementType::class, $logement);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $user = $this->security->getUser();
             $logement->setUser($user);
-
 
             $entityManager = $this->managerRegistry->getManager();
             $entityManager->persist($logement);
@@ -49,7 +43,7 @@ class NewLogementController extends AbstractController
         }
 
         return $this->render('new_logement/index.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
 
 
