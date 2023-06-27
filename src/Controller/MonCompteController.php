@@ -29,6 +29,8 @@ class MonCompteController extends AbstractController
 
         $logements = $user->getLogements();
 
+        $reservations = [];
+
         foreach ($logements as $logement) {
             $reservationsLogement = $this->entityManager->getRepository(Reservation::class)->findBy(['Logement' => $logement]);
             $reservations[$logement->getId()] = $reservationsLogement;
