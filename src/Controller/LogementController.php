@@ -38,8 +38,6 @@ class LogementController extends AbstractController
         $logement = $this->entityManager->getRepository(Logement::class)->find($id);
         $user = $this->security->getUser();
     
-
-        // Vérifiez si le logement existe
         if (!$logement) {
             throw $this->createNotFoundException('Logement non trouvé');
         }
@@ -52,7 +50,7 @@ class LogementController extends AbstractController
         
             if ($form->isSubmitted() && $form->isValid()){
 
-                // Récupérer les dates de début et de fin
+
                 $dateDebut = $form->get('DateDebut')->getData();
                 $dateFin = $form->get('DateFin')->getData();
 
@@ -90,7 +88,7 @@ class LogementController extends AbstractController
     {
         $repository = $this->entityManager->getRepository(Reservation::class);
 
-        // Vérification de la disponibilité des dates de réservation
+        // Vérification des dates de réservation
         $reservations = $repository->createQueryBuilder('r')
             ->where('r.Logement = :logementId')
             ->andWhere('r.DateDebut <= :dateFin')
