@@ -12,18 +12,18 @@
     </div>
 
     <div class="col s5 card-panel center ">
-        {% if user %}
+        
+      {% if user %}
             {% if user.getFavoris().contains(logement) %}
-                <form action="{{ path('app_logement_retirer_favori', {'id': logement.getId()}) }}" method="post">
-                    <button type="submit">Retirer des favoris</button>
+                <form class="right" style="margin-top:5px;" action="{{ path('app_logement_retirer_favori', {'id': logement.getId()}) }}" method="post">
+                    <button style=" border: none; background-color: white;" type="submit"><i class="material-icons">favorite</i></button>
                 </form>
             {% else %}
-                <form action="{{ path('app_logement_ajouter_favori', {'id': logement.getId()}) }}" method="post">
-                    <button type="submit">Ajouter aux favoris</button>
+                <form class="right" style="margin-top:5px;" action="{{ path('app_logement_ajouter_favori', {'id': logement.getId()}) }}" method="post">
+                 <button  style="border: none; background-color: white; :hover:margin-top:-2px" type="submit"><i class="material-icons">favorite_border</i></button>
                 </form>
             {% endif %}
         {% endif %}
-
 
         <h3>Prix par nuit : {{logement.prixParNuit}} €</h3>
         
@@ -44,8 +44,10 @@
                 </div>
             <div class="row">
             <button class="waves-effect waves-light btn" type="submit">Faire une réservation</button>
+            
             </div>
             {{ form_end(form) }}
+            
         {% else %}
             <p>Connecté vous pour faire une réservation</p>
             <a href="{{ path('app_login')}}">Connexion</a>
