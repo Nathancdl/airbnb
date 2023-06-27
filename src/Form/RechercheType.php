@@ -5,6 +5,7 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RechercheType extends AbstractType
 {
@@ -14,9 +15,6 @@ class RechercheType extends AbstractType
             ->add('ville', TextType::class, [
                 'label' => 'Ville',
                 'required' => true,
-            ])
-            ->add('rechercher', SubmitType::class, [
-                'label' => 'Rechercher',
             ]);
     }
 

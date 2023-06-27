@@ -4,7 +4,17 @@
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-</div>
+{{ form_start(form) }}
+{{ form_row(form.ville) }}
+    <div class="row center"> 
+        <button type="submit" class="btn">Recherche</button>
+    </div>
+{{ form_end(form) }}
+
+{% for logement in logements %}
+    <h3>{{ logement.nom }}</h3>
+    <p>Ville : {{ logement.ville }}</p>
+    <!-- Affichez les autres informations du logement -->
+{% endfor %}
+
 {% endblock %}
