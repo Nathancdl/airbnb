@@ -55,7 +55,6 @@ class LogementController extends AbstractController
                 $dateFin = $form->get('DateFin')->getData();
 
                 if ($dateFin > $dateDebut) {
-                    // La date de fin est inférieure à la date de début, traitement de l'erreur
                     $isDisponible = $this->isDatesDisponibles($id, $dateDebut, $dateFin);
 
                     if($isDisponible){
