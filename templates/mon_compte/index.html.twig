@@ -11,7 +11,7 @@
 <h3>Mes Reservations</h3>
 <div class="row">
 {% for myreservation in myreservations %}
-    <div class="col s2 m2">
+    <div class="col s4 m4">
         <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="{{ asset('asset/picture/house.jpg') }}">
@@ -22,9 +22,22 @@
             </div>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">Réservation n°{{ myreservation.id }}<i class="material-icons right">close</i></span>
-                <p>Logement : {{ myreservation.logement.nom }}</p>
-                <p>Date de début : {{ myreservation.DateDebut|date('Y-m-d') }}</p>
-                <p>Date de fin : {{ myreservation.DateFin|date('Y-m-d') }}</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Pays</th>
+                        <th>Date de début</th>
+                        <th>Date de fin</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ myreservation.logement.pays }}</td>
+                        <td>{{ myreservation.DateDebut|date('Y-m-d') }}</td>
+                        <td>{{ myreservation.DateFin|date('Y-m-d') }}</td>
+                    </tr>
+                    </tbody>
+                </table> 
             </div>
         </div>
     </div>
