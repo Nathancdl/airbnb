@@ -34,7 +34,7 @@ const apiKey = 'AIzaSyAdczzsHX24nIf4I_6giOPezBCnZfHUJgM';
 
 // Replace '1600 Amphitheatre Parkway, Mountain View, CA' with the address you want to convert
 const address = "{{ logement.adresse }}, {{ logement.ville }}";
-console.log(address)
+
 // Create a request URL for geocoding API
 const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
@@ -47,8 +47,6 @@ fetch(geocodingUrl)
       const location = data.results[0].geometry.location;
       const latitude = location.lat;
       const longitude = location.lng;
-        console.log(`Latitude: ${latitude}`);
-      console.log(`Longitude: ${longitude}`);
        var locations = [
       
       ['<div class="col s5 m5">' +
@@ -67,11 +65,7 @@ fetch(geocodingUrl)
     '</div>' +
 '</div>', latitude, longitude,1],
       ]
-
-      
     ;
-
-    console.log(locations)
     var infowindow = new google.maps.InfoWindow();
 
     var marker, i;
