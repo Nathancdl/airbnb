@@ -113,14 +113,18 @@ class LogementController extends AbstractController
     }
 
     #[Route('/logement/retirer-favori/{id}', name: 'app_logement_retirer_favori')]
-    public function retirerFavori(Logement $logement, EntityManagerInterface $entityManager): Response
+    public function retirerFavori(Logement $logement, EntityManagerInterface $entityManager, Request $request): Response
     {
         $user = $this->getUser();
         $user->removeFavori($logement);
         $entityManager->flush();
+        $route = $request->headers->get('referer');
 
-        return $this->redirectToRoute('app_logement', ['id' => $logement->getId()]);
+        return $this->redirect($route);
+
+
     }
+
 
     #[Route('/logement/notfound/page', name: 'app_logement_erreur')]
     public function erreur(): Response
