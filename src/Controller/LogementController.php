@@ -17,7 +17,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class LogementController extends AbstractController
 {
-
+    private $form;
     private $security;
     private $entityManager;
     private $reservationRepository;
@@ -46,10 +46,10 @@ class LogementController extends AbstractController
             throw $this->createNotFoundException('Logement non trouvé');
         }
         
-
+        $reservation = new Reservation();
+        $form = $this->createForm(NewReservationType::class, $reservation);
         if($user){
-            $reservation = new Reservation();
-            $form = $this->createForm(NewReservationType::class, $reservation);
+
             $form->handleRequest($request);
         
             if ($form->isSubmitted() && $form->isValid()){

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Compte{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+
+{% for reservation in reservations %}
+<a href="{{ path('app_logement', {'id': reservation.logement.id}) }}">
+<div class="card">
+    <p>Réservation n°{{ reservation.id }}</p>
+    <p>Logement : {{ reservation.logement.nom }}</p>
+    <p>Date de début : {{ reservation.DateDebut|date('Y-m-d') }}</p>
+    <p>Date de fin : {{ reservation.DateFin|date('Y-m-d') }}</p>
+</div>
+</a>
+{% endfor %}
+</div>
+{% endblock %}
