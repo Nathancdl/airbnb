@@ -12,6 +12,19 @@
     </div>
 
     <div class="col s5 card-panel center ">
+        {% if user %}
+            {% if user.getFavoris().contains(logement) %}
+                <form action="{{ path('app_logement_retirer_favori', {'id': logement.getId()}) }}" method="post">
+                    <button type="submit">Retirer des favoris</button>
+                </form>
+            {% else %}
+                <form action="{{ path('app_logement_ajouter_favori', {'id': logement.getId()}) }}" method="post">
+                    <button type="submit">Ajouter aux favoris</button>
+                </form>
+            {% endif %}
+        {% endif %}
+
+
         <h3>Prix par nuit : {{logement.prixParNuit}} €</h3>
         
         <h4>Reservation</h4>

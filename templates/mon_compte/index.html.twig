@@ -7,6 +7,26 @@
 
 <div class="example-wrapper">
 
+<h3>Mes Favoris</h3>
+<div class="row">
+{% for logement in favoris %}
+    <div class="col s3 m3">
+        <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="{{ asset('asset/picture/house.jpg') }}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{ logement.nom }}<i class="material-icons right">more_vert</i></span>
+                <p><a href="{{ path('app_logement', {'id': logement.id}) }}"> Voir le logement </a></p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ logement.nom }}<i class="material-icons right">close</i></span>
+                <p>{{ logement.description }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
 
 <h3>Mes Reservations</h3>
 <div class="row">

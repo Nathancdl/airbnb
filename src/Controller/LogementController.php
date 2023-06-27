@@ -103,4 +103,24 @@ class LogementController extends AbstractController
 
         return count($reservations) === 0;
     }
+
+    #[Route('/logement/ajouter-favori/{id}', name: 'app_logement_ajouter_favori')]
+    public function ajouterFavori(Logement $logement, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+        $user->addFavori($logement);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_logement', ['id' => $logement->getId()]);
+    }
+
+    #[Route('/logement/retirer-favori/{id}', name: 'app_logement_retirer_favori')]
+    public function retirerFavori(Logement $logement, EntityManagerInterface $entityManager): Response
+    {
+        $user = $this->getUser();
+        $user->removeFavori($logement);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_logement', ['id' => $logement->getId()]);
+    }
 }

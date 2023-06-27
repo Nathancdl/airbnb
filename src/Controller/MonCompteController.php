@@ -27,6 +27,8 @@ class MonCompteController extends AbstractController
 
         $myreservations = $this->entityManager->getRepository(Reservation::class)->findBy(['User' => $user]);
 
+        $favoris = $user->getFavoris();
+
         $logements = $user->getLogements();
 
         $reservations = [];
@@ -39,7 +41,8 @@ class MonCompteController extends AbstractController
         return $this->render('mon_compte/index.html.twig', [
             'myreservations' => $myreservations,
             'logements' => $logements,
-            'reservations' => $reservations
+            'reservations' => $reservations,
+            'favoris' => $favoris
         ]);
     }
 

@@ -49,10 +49,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $reservations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Logement::class)
+     */
+    private $favoris;
+
     public function __construct()
     {
         $this->logements = new ArrayCollection();
         $this->reservations = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -181,6 +187,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $reservation->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Logement>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Logement $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Logement $favori): self
+    {
+        $this->favoris->removeElement($favori);
 
         return $this;
     }
