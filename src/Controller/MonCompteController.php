@@ -20,15 +20,18 @@ class MonCompteController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/mon/compte', name: 'app_mon_compte')]
+    #[Route('/moncompte', name: 'app_mon_compte')]
     public function index(): Response
     {
         $user = $this->security->getUser();
 
         $reservations = $this->entityManager->getRepository(Reservation::class)->findBy(['User' => $user]);
 
+        $logements = $user->getLogements();
+
         return $this->render('mon_compte/index.html.twig', [
             'reservations' => $reservations,
+            'logements' => $logements
         ]);
     }
 }

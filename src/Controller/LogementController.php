@@ -39,8 +39,6 @@ class LogementController extends AbstractController
         $user = $this->security->getUser();
     
 
-
-
         // Vérifiez si le logement existe
         if (!$logement) {
             throw $this->createNotFoundException('Logement non trouvé');
@@ -66,7 +64,8 @@ class LogementController extends AbstractController
                     $reservation->setUser($user);
                     $reservation->setDateDebut($dateDebut);
                     $reservation->setDateFin($dateFin);
-                    // Enregistrez le logement dans la base de données
+
+                    // Enregistrement dans la base de données
                     $entityManager = $this->managerRegistry->getManager();
                     $entityManager->persist($reservation);
                     $entityManager->flush();
