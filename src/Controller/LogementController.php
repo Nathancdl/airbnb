@@ -54,25 +54,30 @@ class LogementController extends AbstractController
                 $dateDebut = $form->get('DateDebut')->getData();
                 $dateFin = $form->get('DateFin')->getData();
 
-                $isDisponible = $this->isDatesDisponibles($id, $dateDebut, $dateFin);
+                if ($dateFin > $dateDebut) {
+                    // La date de fin est inférieure à la date de début, traitement de l'erreur
+                    $isDisponible = $this->isDatesDisponibles($id, $dateDebut, $dateFin);
 
-                if($isDisponible){
-                    $reservation = new Reservation();
-                    $reservation->setLogement($logement);
-                    $reservation->setUser($user);
-                    $reservation->setDateDebut($dateDebut);
-                    $reservation->setDateFin($dateFin);
-
-                    // Enregistrement dans la base de données
-                    $entityManager = $this->managerRegistry->getManager();
-                    $entityManager->persist($reservation);
-                    $entityManager->flush();
-
-                    return $this->redirectToRoute('app_reservation_succes');
-                    
-                }else{
-                    $displayIndisponible = true;
+                    if($isDisponible){
+                        $reservation = new Reservation();
+                        $reservation->setLogement($logement);
+                        $reservation->setUser($user);
+                        $reservation->setDateDebut($dateDebut);
+                        $reservation->setDateFin($dateFin);
+    
+                        // Enregistrement dans la base de données
+                        $entityManager = $this->managerRegistry->getManager();
+                        $entityManager->persist($reservation);
+                        $entityManager->flush();
+    
+                        return $this->redirectToRoute('app_reservation_succes');
+                        
+                    }else{
+                        $displayIndisponible = true;
+                    }
                 }
+
+
             }
         }
 
